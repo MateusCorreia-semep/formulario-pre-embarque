@@ -349,11 +349,11 @@
                                         <label class="segmento__opcao"><input type="radio" name="sintoma_palpitacao" value="Não"><span>Não</span></label>
                                     </div>
                                 </div>
-                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_sintoma_incapacitante">
-                                    <span class="titulo" id="rotulo-sintoma_sintoma_incapacitante">Algum sintoma que comprometa sua capacidade de trabalhar?</span>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_incapacitante">
+                                    <span class="titulo" id="rotulo-sintoma_incapacitante">Algum sintoma que comprometa sua capacidade de trabalhar?</span>
                                     <div class="segmento">
-                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sintoma_incapacitante" value="Sim" required><span>Sim</span></label>
-                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sintoma_incapacitante" value="Não"><span>Não</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_incapacitante" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_incapacitante" value="Não"><span>Não</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -551,12 +551,39 @@
                                         required> Reconheço e afirmo as informações registradas.</label>
                             </fieldset>
 
+                            <div class="pergunta assinatura">
+                                <span class="titulo" id="rotulo-assinatura">Assinatura <span class="obrigatorio">*</span></span>
+                                <p class="dica">Assine com o dedo dentro do quadro abaixo.</p>
+                                <div class="assinatura__quadro">
+                                    <canvas class="assinatura__canvas" role="img" aria-labelledby="rotulo-assinatura"></canvas>
+                                    <span class="assinatura__linha" aria-hidden="true"></span>
+                                    <button type="button" class="assinatura__limpar">Limpar</button>
+                                </div>
+                                <!-- Recebe a imagem da assinatura; visualmente oculto, mas participa da validação -->
+                                <input type="text" class="visualmente-oculto" name="assinatura" tabindex="-1"
+                                    aria-hidden="true" required>
+                            </div>
+
                             <button type="button" class="btn-avancar">Avançar</button>
                         </div>
                     </div>
                 </section>
             </form>
+
+            <div class="aviso-envio" role="alert" hidden>
+                <p class="aviso-envio__texto"></p>
+                <button type="button" class="aviso-envio__tentar">Tentar novamente</button>
+            </div>
         </main>
+
+        <!-- Confirmação após o envio -->
+        <section id="tela-sucesso" class="sucesso" hidden>
+            <div class="sucesso__icone" aria-hidden="true"></div>
+            <h2 class="sucesso__titulo">Respostas enviadas</h2>
+            <p class="sucesso__texto">Obrigado<span class="sucesso__nome"></span>! Sua autoavaliação de saúde foi
+                registrada. Caso alguma condição interfira no seu embarque, entre em contato com o telefone
+                <a href="tel:+5522998007682">(22) 99800-7682</a>.</p>
+        </section>
 
         <div class="progresso" role="progressbar" aria-label="Progresso do formulário" aria-valuemin="0"
             aria-valuemax="100" aria-valuenow="0">

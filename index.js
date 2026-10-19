@@ -141,7 +141,6 @@ secoes.forEach((secao) => {
         const proxima = primeiraPendente();
 
         if (!proxima) {
-            abrirSecao(null);
             atualizarEstado();
             form.requestSubmit();
             return;
@@ -169,8 +168,122 @@ form.addEventListener('change', (e) => {
     atualizarEstado();
 });
 
-form.addEventListener('submit', (e) => {
+// ---------- Assinatura ----------
+// Os traços são guardados em coordenadas relativas (0 a 1) para redesenhar sem distorção
+// quando o quadro muda de tamanho (ex.: girar o celular ou abrir a seção).
+
+const canvasAssinatura = form.querySelector('.assinatura__canvas');
+const campoAssinatura = form.elements.assinatura;
+const ctxAssinatura = canvasAssinatura.getContext('2d');
+let tracos = [];
+let tracoAtual = null;
+
+function ajustarCanvas() {
+    const { width, height } = canvasAssinatura.getBoundingClientRect();
+    if (!width || !height) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvasAssinatura.width = Math.round(width * dpr);
+    canvasAssinatura.height = Math.round(height * dpr);
+    redesenharAssinatura();
+}
+
+function redesenharAssinatura() {
+    const { width, height } = canvasAssinatura;
+    const dpr = window.devicePixelRatio || 1;
+    ctxAssinatura.fillStyle = '#FFFFFF';
+    ctxAssinatura.fillRect(0, 0, width, height);
+    ctxAssinatura.lineWidth = 2.5 * dpr;
+    ctxAssinatura.lineCap = 'round';
+    ctxAssinatura.lineJoin = 'round';
+    ctxAssinatura.strokeStyle = '#1f2a2a';
+    tracos.forEach((traco) => {
+        ctxAssinatura.beginPath();
+        traco.forEach(([x, y], i) => {
+            const px = x * width;
+            const py = y * height;
+            if (i === 0) ctxAssinatura.moveTo(px, py);
+            else ctxAssinatura.lineTo(px, py);
+        });
+        // Um toque sem movimento vira um ponto
+        if (traco.length === 1) ctxAssinatura.lineTo(traco[0][0] * width + 0.1, traco[0][1] * height);
+        ctxAssinatura.stroke();
+    });
+}
+
+function pontoDo(evento) {
+    const r = canvasAssinatura.getBoundingClientRect();
+    return [(evento.clientX - r.left) / r.width, (evento.clientY - r.top) / r.height];
+}
+
+function salvarAssinatura() {
+    campoAssinatura.value = tracos.length ? canvasAssinatura.toDataURL('image/png') : '';
+    campoAssinatura.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+canvasAssinatura.addEventListener('pointerdown', (e) => {
     e.preventDefault();
+    canvasAssinatura.setPointerCapture(e.pointerId);
+    tracoAtual = [pontoDo(e)];
+    tracos.push(tracoAtual);
+    redesenharAssinatura();
+});
+
+canvasAssinatura.addEventListener('pointermove', (e) => {
+    if (!tracoAtual) return;
+    tracoAtual.push(pontoDo(e));
+    redesenharAssinatura();
+});
+
+['pointerup', 'pointercancel'].forEach((tipo) => {
+    canvasAssinatura.addEventListener(tipo, () => {
+        if (!tracoAtual) return;
+        tracoAtual = null;
+        salvarAssinatura();
+    });
+});
+
+form.querySelector('.assinatura__limpar').addEventListener('click', () => {
+    tracos = [];
+    redesenharAssinatura();
+    salvarAssinatura();
+});
+
+new ResizeObserver(ajustarCanvas).observe(canvasAssinatura);
+
+// ---------- Envio ----------
+
+const avisoEnvio = document.querySelector('.aviso-envio');
+const btnEnviar = secoes.at(-1).querySelector('.btn-avancar');
+
+document.querySelector('.aviso-envio__tentar').addEventListener('click', () => form.requestSubmit());
+
+function coletarDados() {
+    // Grupos de checkbox sempre viram listas, mesmo com uma única opção marcada
+    const dados = {};
+    for (const [campo, valor] of new FormData(form)) {
+        const multiplo = form.querySelectorAll(`input[type="checkbox"][name="${campo}"]`).length > 1;
+        if (multiplo) (dados[campo] ??= []).push(valor);
+        else dados[campo] = valor;
+    }
+    // Só o conteúdo base64 do PNG, pronto para base64ToBinary() no Power Automate
+    dados.assinatura = dados.assinatura.replace(/^data:image\/png;base64,/, '');
+    dados.enviado_em = new Date().toISOString();
+    return dados;
+}
+
+function mostrarSucesso() {
+    document.querySelector('.conteudo-form').hidden = true;
+    const nome = form.elements.nome.value.trim().split(/\s+/)[0];
+    document.querySelector('.sucesso__nome').textContent = nome ? `, ${nome}` : '';
+    document.getElementById('tela-sucesso').hidden = false;
+    window.scrollTo(0, 0);
+}
+
+let enviando = false;
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (enviando) return;
 
     const invalida = secoes.find((s) => !validarSecao(s, { mostrarErros: false }));
     if (invalida) {
@@ -182,15 +295,30 @@ form.addEventListener('submit', (e) => {
         return;
     }
 
-    // Grupos de checkbox sempre viram listas, mesmo com uma única opção marcada
-    const dados = {};
-    for (const [campo, valor] of new FormData(form)) {
-        const multiplo = form.querySelectorAll(`input[type="checkbox"][name="${campo}"]`).length > 1;
-        if (multiplo) (dados[campo] ??= []).push(valor);
-        else dados[campo] = valor;
+    enviando = true;
+    avisoEnvio.hidden = true;
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = 'Enviando...';
+
+    try {
+        const resposta = await fetch('/api/enviar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(coletarDados()),
+        });
+        if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+        mostrarSucesso();
+    } catch (erro) {
+        console.error('Falha no envio', erro);
+        avisoEnvio.querySelector('.aviso-envio__texto').textContent =
+            'Não foi possível enviar suas respostas. Verifique sua conexão e tente novamente.';
+        avisoEnvio.hidden = false;
+        avisoEnvio.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+        enviando = false;
+        btnEnviar.disabled = false;
+        atualizarEstado();
     }
-    // Envio ainda não implementado: por enquanto apenas exibe os dados no console
-    console.log(dados);
 });
 
 atualizarCondicionais();

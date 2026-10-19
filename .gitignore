@@ -1,0 +1,19 @@
+# Configurações locais do Claude Code
+.claude/
+
+# Cloudflare Wrangler (dev local) e secrets locais, ex.: FLOW_URL
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+
+# Dependências e logs
+node_modules/
+npm-debug.log*
+
+# Arquivos de sistema e editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp

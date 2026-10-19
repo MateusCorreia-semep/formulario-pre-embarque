@@ -1,0 +1,191 @@
+{
+    "type": "object",
+    "properties": {
+        "empresa": {
+            "type": "string"
+        },
+        "nome": {
+            "type": "string"
+        },
+        "telefone": {
+            "type": "string"
+        },
+        "unidade": {
+            "type": "string"
+        },
+        "condicoes_trabalho": {
+            "type": "string"
+        },
+        "situacao_interferencia": {
+            "type": "string"
+        },
+        "acompanhamento_mental": {
+            "type": "string"
+        },
+        "acompanhamento_motivo": {
+            "type": "string"
+        },
+        "alteracao_saude": {
+            "type": "string"
+        },
+        "alteracao_descricao": {
+            "type": "string"
+        },
+        "tratamento": {
+            "type": "string"
+        },
+        "tratamento_descricao": {
+            "type": "string"
+        },
+        "medicamento": {
+            "type": "string"
+        },
+        "medicamento_descricao": {
+            "type": "string"
+        },
+        "restricao_medica": {
+            "type": "string"
+        },
+        "restricao_descricao": {
+            "type": "string"
+        },
+        "sintoma_tontura": {
+            "type": "string"
+        },
+        "sintoma_epilepsia": {
+            "type": "string"
+        },
+        "sintoma_gastrite": {
+            "type": "string"
+        },
+        "sintoma_hemorroidas": {
+            "type": "string"
+        },
+        "sintoma_febre": {
+            "type": "string"
+        },
+        "sintoma_bronquite": {
+            "type": "string"
+        },
+        "sintoma_pedras_rins": {
+            "type": "string"
+        },
+        "sintoma_pressao": {
+            "type": "string"
+        },
+        "sintoma_diabetes": {
+            "type": "string"
+        },
+        "sintoma_hernias": {
+            "type": "string"
+        },
+        "sintoma_ansiedade": {
+            "type": "string"
+        },
+        "sintoma_cancer": {
+            "type": "string"
+        },
+        "sintoma_sinusite": {
+            "type": "string"
+        },
+        "sintoma_sono": {
+            "type": "string"
+        },
+        "sintoma_dor_articular": {
+            "type": "string"
+        },
+        "sintoma_palpitacao": {
+            "type": "string"
+        },
+        "sintoma_incapacitante": {
+            "type": "string"
+        },
+        "dor": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "intensidade_bracos": {
+            "type": "string"
+        },
+        "intensidade_pernas": {
+            "type": "string"
+        },
+        "intensidade_coluna": {
+            "type": "string"
+        },
+        "intensidade_pescoco": {
+            "type": "string"
+        },
+        "intensidade_maos": {
+            "type": "string"
+        },
+        "intensidade_pes": {
+            "type": "string"
+        },
+        "dor_outra_local": {
+            "type": "string"
+        },
+        "intensidade_outra": {
+            "type": "string"
+        },
+        "atividade_fisica": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "ciente_contato": {
+            "type": "string"
+        },
+        "declaracao": {
+            "type": "string"
+        },
+        "assinatura": {
+            "type": "string"
+        },
+        "enviado_em": {
+            "type": "string"
+        },
+        "recebido_em": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "empresa",
+        "nome",
+        "telefone",
+        "unidade",
+        "condicoes_trabalho",
+        "acompanhamento_mental",
+        "alteracao_saude",
+        "tratamento",
+        "medicamento",
+        "restricao_medica",
+        "sintoma_tontura",
+        "sintoma_epilepsia",
+        "sintoma_gastrite",
+        "sintoma_hemorroidas",
+        "sintoma_febre",
+        "sintoma_bronquite",
+        "sintoma_pedras_rins",
+        "sintoma_pressao",
+        "sintoma_diabetes",
+        "sintoma_hernias",
+        "sintoma_ansiedade",
+        "sintoma_cancer",
+        "sintoma_sinusite",
+        "sintoma_sono",
+        "sintoma_dor_articular",
+        "sintoma_palpitacao",
+        "sintoma_incapacitante",
+        "dor",
+        "atividade_fisica",
+        "ciente_contato",
+        "declaracao",
+        "assinatura",
+        "enviado_em",
+        "recebido_em"
+    ]
+}
