@@ -158,19 +158,22 @@ body {
 /* ---------- Formulário ---------- */
 
 .topo {
-    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 12px 16px 10px;
     background: var(--verde-tradicao);
     color: var(--branco);
     border-bottom: 4px solid var(--verde-inovacao);
 }
 
 .topo__interno {
+    max-width: 760px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    max-width: 760px;
-    margin: 0 auto;
 }
 
 .topo__titulo {
@@ -186,12 +189,166 @@ body {
     height: auto;
 }
 
-.container {
-    margin: 12px;
-    padding: 24px 16px;
+/* Barra de progresso fina, fixa na borda inferior da tela */
+.progresso {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    height: calc(4px + env(safe-area-inset-bottom));
     background: var(--branco);
-    border-radius: 8px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.progresso__barra {
+    width: 0;
+    height: 4px;
+    background: var(--verde-tradicao);
+    transition: width 0.5s ease;
+}
+
+.conteudo-form {
+    padding: 12px 12px calc(32px + env(safe-area-inset-bottom));
+}
+
+/* Seções recolhíveis */
+
+.secao {
+    margin-bottom: 12px;
+    overflow: hidden;
+    background: var(--branco);
+    border-radius: 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.secao__titulo {
+    margin: 0;
+    font-size: inherit;
+}
+
+.secao__cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 64px;
+    padding: 14px 16px;
+    font: inherit;
+    text-align: left;
+    color: var(--verde-tradicao);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.secao__cabecalho:disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+
+.secao__cabecalho:focus-visible {
+    outline: 2px solid var(--verde-tradicao);
+    outline-offset: -4px;
+}
+
+.secao__numero {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--verde-tradicao);
+    border: 2px solid var(--verde-tradicao);
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.secao--concluida .secao__numero {
+    font-size: 0;
+    background: var(--verde-inovacao) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B514F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center / 18px no-repeat;
+    border-color: var(--verde-inovacao);
+}
+
+.secao__textos {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.secao__nome {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.secao__status {
+    font-size: 0.8125rem;
+    color: var(--cinza);
+}
+
+.secao__status:empty {
+    display: none;
+}
+
+.secao__seta {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s;
+}
+
+.secao__cabecalho[aria-expanded="true"] .secao__seta {
+    transform: rotate(180deg);
+}
+
+.secao__cabecalho:disabled .secao__seta {
+    visibility: hidden;
+}
+
+/* Animação de abrir/recolher: grid de 0fr para 1fr */
+.secao__corpo,
+.condicional {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s ease, opacity 0.35s ease;
+    opacity: 0;
+}
+
+.secao--aberta .secao__corpo,
+.condicional--visivel {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.secao__conteudo,
+.condicional__interno {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.secao__conteudo {
+    padding: 0 16px;
+}
+
+.secao--aberta .secao__conteudo {
+    padding-bottom: 20px;
+}
+
+.secao__conteudo::before {
+    content: "";
+    display: block;
+    margin-bottom: 20px;
+    border-top: 1px solid #e3e6e6;
 }
 
 fieldset {
@@ -199,15 +356,6 @@ fieldset {
     margin: 0;
     padding: 0;
     border: 0;
-}
-
-.secao>legend {
-    margin-bottom: 24px;
-    padding-left: 12px;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--verde-tradicao);
-    border-left: 4px solid var(--verde-inovacao);
 }
 
 .pergunta {
@@ -221,8 +369,22 @@ fieldset {
     line-height: 1.4;
 }
 
+.pergunta--invalida>label,
+.pergunta--invalida>.titulo {
+    color: #a4262c;
+}
+
 .obrigatorio {
     color: #a4262c;
+}
+
+.opcoes {
+    display: grid;
+    gap: 10px;
+}
+
+.opcoes--linha {
+    grid-template-columns: 1fr 1fr;
 }
 
 /* Opções como "cartões" para facilitar o toque */
@@ -231,7 +393,6 @@ fieldset {
     align-items: center;
     gap: 12px;
     min-height: 52px;
-    margin-bottom: 10px;
     padding: 12px 14px;
     border: 1px solid #c8c6c4;
     border-radius: 6px;
@@ -253,7 +414,9 @@ fieldset {
 }
 
 input[type="text"],
-input[type="tel"] {
+input[type="tel"],
+textarea {
+    display: block;
     width: 100%;
     min-height: 50px;
     padding: 12px 14px;
@@ -264,14 +427,26 @@ input[type="tel"] {
     border-radius: 6px;
 }
 
+textarea {
+    resize: vertical;
+}
+
 input[type="text"]:focus,
-input[type="tel"]:focus {
+input[type="tel"]:focus,
+textarea:focus {
     outline: 2px solid var(--verde-tradicao);
     outline-offset: -1px;
     border-color: transparent;
 }
 
-.btn-enviar {
+.pergunta--invalida input[type="text"],
+.pergunta--invalida input[type="tel"],
+.pergunta--invalida textarea,
+.pergunta--invalida .opcao {
+    border-color: #a4262c;
+}
+
+.btn-avancar {
     width: 100%;
     min-height: 54px;
     padding: 14px 28px;
@@ -285,8 +460,18 @@ input[type="tel"]:focus {
     cursor: pointer;
 }
 
-.btn-enviar:hover {
+.btn-avancar:hover {
     background: var(--verde-tradicao-escuro);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .secao__corpo,
+    .condicional,
+    .progresso__barra,
+    .secao__seta {
+        transition: none;
+    }
 }
 
 /* ---------- Telas maiores ---------- */
@@ -311,10 +496,22 @@ input[type="tel"]:focus {
         align-self: flex-start;
     }
 
-    .container {
-        max-width: 760px;
-        margin: 24px auto;
-        padding: 32px;
+    .conteudo-form {
+        max-width: 784px;
+        margin: 0 auto;
+        padding-top: 24px;
+    }
+
+    .secao__cabecalho {
+        padding: 18px 24px;
+    }
+
+    .secao__conteudo {
+        padding: 0 24px;
+    }
+
+    .secao--aberta .secao__conteudo {
+        padding-bottom: 28px;
     }
 
     .topo__titulo {
@@ -325,7 +522,7 @@ input[type="tel"]:focus {
         width: 110px;
     }
 
-    .btn-enviar {
+    .btn-avancar {
         width: auto;
     }
 }

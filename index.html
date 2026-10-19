@@ -43,49 +43,187 @@
             </div>
         </header>
 
-        <main class="container">
-            <form id="form-pre-embarque">
-                <fieldset id="dados-pessoais" class="secao">
-                    <legend>Dados Pessoais</legend>
+        <main class="conteudo-form">
+            <form id="form-pre-embarque" novalidate>
+                <section class="secao" id="secao-dados-pessoais" data-secao>
+                    <h2 class="secao__titulo">
+                        <button type="button" class="secao__cabecalho" aria-expanded="false"
+                            aria-controls="corpo-dados-pessoais">
+                            <span class="secao__numero" aria-hidden="true">1</span>
+                            <span class="secao__textos">
+                                <span class="secao__nome">Dados Pessoais</span>
+                                <span class="secao__status"></span>
+                            </span>
+                            <svg class="secao__seta" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                    </h2>
+                    <div class="secao__corpo" id="corpo-dados-pessoais">
+                        <div class="secao__conteudo">
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Qual empresa você pertence? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes">
+                                    <label class="opcao"><input type="radio" name="empresa" value="Priner SI" required> Priner SI</label>
+                                    <label class="opcao"><input type="radio" name="empresa" value="Smartcoat"> Smartcoat</label>
+                                </div>
+                            </fieldset>
 
-                    <fieldset class="pergunta">
-                        <legend class="titulo">Qual empresa você pertence? <span class="obrigatorio">*</span>
-                        </legend>
-                        <label class="opcao">
-                            <input type="radio" name="empresa" value="Priner SI" required>
-                            Priner SI
-                        </label>
-                        <label class="opcao">
-                            <input type="radio" name="empresa" value="Smartcoat">
-                            Smartcoat
-                        </label>
-                    </fieldset>
+                            <div class="pergunta">
+                                <label for="nome">Qual seu Nome? <span class="obrigatorio">*</span></label>
+                                <input type="text" id="nome" name="nome" placeholder="Insira sua resposta"
+                                    autocomplete="name" required>
+                            </div>
 
-                    <div class="pergunta">
-                        <label for="nome">Qual seu Nome? <span class="obrigatorio">*</span></label>
-                        <input type="text" id="nome" name="nome" placeholder="Insira sua resposta" autocomplete="name"
-                            required>
+                            <div class="pergunta">
+                                <label for="telefone">Contato telefônico (DDD+telefone móvel)? <span
+                                        class="obrigatorio">*</span></label>
+                                <input type="tel" id="telefone" name="telefone" placeholder="Apenas números"
+                                    inputmode="numeric" autocomplete="tel-national" maxlength="15"
+                                    pattern="\(\d{2}\) 9\d{4}-\d{4}" title="Informe DDD + celular, ex.: (22) 99999-9999"
+                                    required>
+                            </div>
+
+                            <div class="pergunta">
+                                <label for="unidade">Em qual unidade (Plataforma) está programado para embarque? <span
+                                        class="obrigatorio">*</span></label>
+                                <input type="text" id="unidade" name="unidade" placeholder="Insira sua resposta" required>
+                            </div>
+
+                            <button type="button" class="btn-avancar">Avançar</button>
+                        </div>
                     </div>
+                </section>
 
-                    <div class="pergunta">
-                        <label for="telefone">Contato telefônico (DDD+telefone móvel)? <span
-                                class="obrigatorio">*</span></label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="Apenas números"
-                            inputmode="numeric" autocomplete="tel-national" maxlength="15"
-                            pattern="\(\d{2}\) 9\d{4}-\d{4}" title="Informe DDD + celular, ex.: (22) 99999-9999"
-                            required>
+                <section class="secao" id="secao-saude-mental" data-secao>
+                    <h2 class="secao__titulo">
+                        <button type="button" class="secao__cabecalho" aria-expanded="false"
+                            aria-controls="corpo-saude-mental">
+                            <span class="secao__numero" aria-hidden="true">2</span>
+                            <span class="secao__textos">
+                                <span class="secao__nome">Saúde Mental e Condições para o trabalho</span>
+                                <span class="secao__status"></span>
+                            </span>
+                            <svg class="secao__seta" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                    </h2>
+                    <div class="secao__corpo" id="corpo-saude-mental">
+                        <div class="secao__conteudo">
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Atualmente, você se sente em condições de saúde física, emocional e psicológica para realizar suas atividades de trabalho? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes opcoes--linha">
+                                    <label class="opcao"><input type="radio" name="condicoes_trabalho" value="Sim" required> Sim</label>
+                                    <label class="opcao"><input type="radio" name="condicoes_trabalho" value="Não"> Não</label>
+                                </div>
+                            </fieldset>
+                            <div class="condicional" data-condicao="condicoes_trabalho=Não">
+                                <div class="condicional__interno">
+                                    <div class="pergunta">
+                                        <label for="situacao_interferencia">Descreva brevemente a situação que está interferindo na sua capacidade de realizar suas atividades de trabalho. <span class="obrigatorio">*</span></label>
+                                        <textarea id="situacao_interferencia" name="situacao_interferencia" rows="3" placeholder="Insira sua resposta"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Está realizando atualmente algum acompanhamento relacionado à saúde mental? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes opcoes--linha">
+                                    <label class="opcao"><input type="radio" name="acompanhamento_mental" value="Sim" required> Sim</label>
+                                    <label class="opcao"><input type="radio" name="acompanhamento_mental" value="Não"> Não</label>
+                                </div>
+                            </fieldset>
+                            <div class="condicional" data-condicao="acompanhamento_mental=Sim">
+                                <div class="condicional__interno">
+                                    <div class="pergunta">
+                                        <label for="acompanhamento_motivo">Qual o motivo ou tipo de acompanhamento que você realiza atualmente? <span class="obrigatorio">*</span></label>
+                                        <textarea id="acompanhamento_motivo" name="acompanhamento_motivo" rows="3" placeholder="Insira sua resposta"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Desde o seu último embarque ou avaliação ocupacional (ASO), você teve alguma alteração significativa no seu estado de saúde que ainda não tenha sido informada à Saúde Ocupacional? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes opcoes--linha">
+                                    <label class="opcao"><input type="radio" name="alteracao_saude" value="Sim" required> Sim</label>
+                                    <label class="opcao"><input type="radio" name="alteracao_saude" value="Não"> Não</label>
+                                </div>
+                            </fieldset>
+                            <div class="condicional" data-condicao="alteracao_saude=Sim">
+                                <div class="condicional__interno">
+                                    <div class="pergunta">
+                                        <label for="alteracao_descricao">Qual foi a alteração significativa que precisamos saber? <span class="obrigatorio">*</span></label>
+                                        <textarea id="alteracao_descricao" name="alteracao_descricao" rows="3" placeholder="Insira sua resposta"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Você está realizando algum tratamento médico/odontológico atualmente? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes opcoes--linha">
+                                    <label class="opcao"><input type="radio" name="tratamento" value="Sim" required> Sim</label>
+                                    <label class="opcao"><input type="radio" name="tratamento" value="Não"> Não</label>
+                                </div>
+                            </fieldset>
+                            <div class="condicional" data-condicao="tratamento=Sim">
+                                <div class="condicional__interno">
+                                    <div class="pergunta">
+                                        <label for="tratamento_descricao">Qual tratamento? <span class="obrigatorio">*</span></label>
+                                        <textarea id="tratamento_descricao" name="tratamento_descricao" rows="3" placeholder="Insira sua resposta"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Recentemente, houve início, suspensão ou alteração de dose de algum medicamento, ou você atualmente está fazendo uso de algum medicamento controlado? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes opcoes--linha">
+                                    <label class="opcao"><input type="radio" name="medicamento" value="Sim" required> Sim</label>
+                                    <label class="opcao"><input type="radio" name="medicamento" value="Não"> Não</label>
+                                </div>
+                            </fieldset>
+                            <div class="condicional" data-condicao="medicamento=Sim">
+                                <div class="condicional__interno">
+                                    <div class="pergunta">
+                                        <label for="medicamento_descricao">Informar qual medicamento? Tem receita médica com a prescrição? <span class="obrigatorio">*</span></label>
+                                        <textarea id="medicamento_descricao" name="medicamento_descricao" rows="3" placeholder="Insira sua resposta"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Possui alguma orientação, restrição, atestado médico ou documento de saúde relacionado a atendimento recente que possa interferir na realização das suas atividades durante o embarque? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes opcoes--linha">
+                                    <label class="opcao"><input type="radio" name="restricao_medica" value="Sim" required> Sim</label>
+                                    <label class="opcao"><input type="radio" name="restricao_medica" value="Não"> Não</label>
+                                </div>
+                            </fieldset>
+                            <div class="condicional" data-condicao="restricao_medica=Sim">
+                                <div class="condicional__interno">
+                                    <div class="pergunta">
+                                        <label for="restricao_descricao">Descreva brevemente a recomendação médica que iremos entrar em contato com você. <span class="obrigatorio">*</span></label>
+                                        <textarea id="restricao_descricao" name="restricao_descricao" rows="3" placeholder="Insira sua resposta"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-avancar">Avançar</button>
+                        </div>
                     </div>
-
-                    <div class="pergunta">
-                        <label for="unidade">Em qual unidade (Plataforma) está programado para embarque? <span
-                                class="obrigatorio">*</span></label>
-                        <input type="text" id="unidade" name="unidade" placeholder="Insira sua resposta" required>
-                    </div>
-                </fieldset>
-
-                <button type="submit" class="btn-enviar">Enviar</button>
+                </section>
             </form>
         </main>
+
+        <div class="progresso" role="progressbar" aria-label="Progresso do formulário" aria-valuemin="0"
+            aria-valuemax="100" aria-valuenow="0">
+            <div class="progresso__barra"></div>
+        </div>
     </div>
 
     <script src="index.js"></script>
