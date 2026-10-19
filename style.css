@@ -39,7 +39,7 @@ body {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    padding: 24px 20px calc(24px + env(safe-area-inset-bottom));
+    padding: clamp(16px, 3dvh, 24px) 20px calc(clamp(16px, 3dvh, 24px) + env(safe-area-inset-bottom));
     overflow: hidden;
     background: var(--verde-tradicao);
     color: var(--branco);
@@ -47,9 +47,10 @@ body {
 
 .intro__grafismo {
     position: absolute;
-    top: -6vw;
-    right: -18vw;
-    width: 72vw;
+    top: -4vw;
+    right: -16vw;
+    /* Encolhe também pela altura em telas baixas */
+    width: min(66vw, 34dvh);
     max-width: 420px;
     height: auto;
     pointer-events: none;
@@ -62,10 +63,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 20px;
+    gap: clamp(10px, 2.2dvh, 20px);
     width: 100%;
     /* Espaço reservado para o grafismo no topo */
-    padding-top: 46vw;
+    padding-top: min(40vw, 19dvh);
 }
 
 .valores {
@@ -86,7 +87,7 @@ body {
 
 .intro h1 {
     margin: 0;
-    font-size: clamp(2rem, 9.5vw, 3.75rem);
+    font-size: clamp(1.75rem, min(9vw, 5.4dvh), 3.75rem);
     font-weight: 700;
     line-height: 1.12;
 }
@@ -102,24 +103,24 @@ body {
 
 .intro h2 {
     margin: 0;
-    font-size: 1.375rem;
+    font-size: clamp(1.125rem, 3dvh, 1.375rem);
     font-weight: 600;
     color: var(--verde-inovacao);
 }
 
 .intro p {
     margin: 0;
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-size: clamp(0.9375rem, 2.4dvh, 1.0625rem);
+    line-height: 1.5;
     text-align: justify;
     hyphens: auto;
 }
 
 .btn-iniciar {
     width: 100%;
-    min-height: 60px;
-    margin-top: 12px;
-    padding: 18px 40px;
+    min-height: 56px;
+    margin-top: clamp(4px, 1dvh, 12px);
+    padding: 16px 40px;
     font: inherit;
     font-size: 1.1875rem;
     font-weight: 700;
@@ -147,11 +148,11 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 32px;
+    margin-top: clamp(16px, 3dvh, 32px);
 }
 
 .intro__logo {
-    width: 140px;
+    width: clamp(110px, 18dvh, 140px);
     height: auto;
 }
 
@@ -536,7 +537,7 @@ fieldset {
 
 .escala {
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     gap: 3px;
 }
 
@@ -747,6 +748,23 @@ textarea:focus {
     font-weight: 600;
     color: var(--verde-tradicao);
     white-space: nowrap;
+}
+
+/* Celulares com tela muito baixa: compacta a tela inicial para caber sem rolagem */
+@media (max-height: 620px) {
+    .valores li {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+
+    .intro p {
+        line-height: 1.4;
+    }
+
+    .btn-iniciar {
+        min-height: 50px;
+        padding: 12px 32px;
+    }
 }
 
 /* ---------- Telas maiores ---------- */
