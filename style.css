@@ -413,6 +413,152 @@ fieldset {
     accent-color: var(--verde-tradicao);
 }
 
+.dica {
+    margin: -4px 0 14px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--cinza);
+}
+
+.titulo a {
+    font-weight: 600;
+    color: var(--verde-tradicao);
+    white-space: nowrap;
+}
+
+/* Matriz de sintomas: uma linha por sintoma com Sim/Não ao lado */
+.pergunta-grupo {
+    margin-bottom: 28px;
+}
+
+.pergunta-grupo>.titulo {
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.pergunta.sintoma {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #e3e6e6;
+}
+
+.pergunta.sintoma:last-child {
+    border-bottom: 0;
+}
+
+.pergunta.sintoma>.titulo {
+    flex: 1;
+    margin: 0;
+    font-size: 0.9375rem;
+}
+
+/* Inputs escondidos visualmente, mas ainda focáveis e validáveis */
+.segmento__opcao input,
+.escala__opcao input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.segmento {
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid #c8c6c4;
+    border-radius: 6px;
+}
+
+.segmento__opcao,
+.escala__opcao {
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.segmento__opcao span {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 44px;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.segmento__opcao+.segmento__opcao span {
+    border-left: 1px solid #c8c6c4;
+}
+
+.segmento__opcao input:checked+span,
+.escala__opcao input:checked+span {
+    font-weight: 700;
+    color: var(--branco);
+    background: var(--verde-tradicao);
+}
+
+.segmento__opcao input:focus-visible+span,
+.escala__opcao input:focus-visible+span {
+    outline: 2px solid var(--verde-tradicao);
+    outline-offset: 2px;
+}
+
+.pergunta--invalida .segmento,
+.pergunta--invalida .escala__opcao span {
+    border-color: #a4262c;
+}
+
+/* Intensidade da dor, aberta logo abaixo do membro marcado */
+.condicional__interno>.pergunta.intensidade,
+.condicional__interno>.pergunta {
+    margin: 4px 0 6px;
+    padding: 14px 12px;
+    background: rgba(11, 81, 79, 0.05);
+    border-radius: 6px;
+}
+
+.condicional__interno>.pergunta+.pergunta {
+    margin-top: 0;
+    padding-top: 0;
+    border-radius: 0 0 6px 6px;
+}
+
+.condicional__interno>.pergunta:has(+ .pergunta) {
+    margin-bottom: 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.intensidade>.titulo {
+    font-size: 0.9375rem;
+}
+
+.escala {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 3px;
+}
+
+.escala__opcao span {
+    display: grid;
+    place-items: center;
+    height: 44px;
+    font-size: 0.9375rem;
+    background: var(--branco);
+    border: 1px solid #c8c6c4;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.escala__legenda {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    color: var(--cinza);
+}
+
 input[type="text"],
 input[type="tel"],
 textarea {

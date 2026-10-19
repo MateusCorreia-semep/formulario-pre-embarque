@@ -33,11 +33,36 @@ telefone.addEventListener('input', () => {
 function atualizarCondicionais() {
     condicionais.forEach((bloco) => {
         const [campo, valor] = bloco.dataset.condicao.split('=');
-        const visivel = form.elements[campo].value === valor;
+        const visivel = [...form.querySelectorAll(`[name="${campo}"]`)].some((el) =>
+            el.type === 'radio' || el.type === 'checkbox' ? el.checked && el.value === valor : el.value === valor);
         bloco.classList.toggle('condicional--visivel', visivel);
         bloco.querySelectorAll('input, textarea, select').forEach((el) => {
             el.disabled = !visivel;
         });
+    });
+}
+
+// ---------- Grupos de checkbox ----------
+// data-grupo-obrigatorio: exige ao menos uma opção marcada.
+// data-exclusivo: opção que desmarca as demais (ex.: "Não sinto dor nenhuma").
+
+const gruposObrigatorios = [...form.querySelectorAll('[data-grupo-obrigatorio]')];
+
+function atualizarGrupos() {
+    gruposObrigatorios.forEach((grupo) => {
+        const opcoes = [...grupo.querySelectorAll(':scope > .opcoes > .opcao input[type="checkbox"]')];
+        const algumaMarcada = opcoes.some((el) => el.checked);
+        opcoes[0].setCustomValidity(algumaMarcada ? '' : 'Selecione pelo menos uma opção.');
+    });
+}
+
+function aplicarExclusivo(alterado) {
+    if (alterado.type !== 'checkbox' || !alterado.checked) return;
+    const irmaos = [...form.querySelectorAll(`input[type="checkbox"][name="${alterado.name}"]`)];
+    irmaos.forEach((el) => {
+        if (el !== alterado && (alterado.hasAttribute('data-exclusivo') || el.hasAttribute('data-exclusivo'))) {
+            el.checked = false;
+        }
     });
 }
 
@@ -55,9 +80,13 @@ function marcarInvalido(campo, invalido) {
 }
 
 function validarSecao(secao, { mostrarErros = true } = {}) {
-    const invalidos = camposDa(secao).filter((el) => !el.checkValidity());
+    atualizarGrupos();
+    const campos = camposDa(secao);
+    const invalidos = campos.filter((el) => !el.checkValidity());
     if (mostrarErros) {
-        camposDa(secao).forEach((el) => marcarInvalido(el, invalidos.includes(el)));
+        // Uma pergunta pode ter vários inputs: fica inválida se qualquer um deles for inválido
+        const perguntasInvalidas = new Set(invalidos.map((el) => el.closest('.pergunta')));
+        campos.forEach((el) => marcarInvalido(el, perguntasInvalidas.has(el.closest('.pergunta'))));
         if (invalidos.length) invalidos[0].reportValidity();
     }
     return invalidos.length === 0;
@@ -127,7 +156,9 @@ secoes.forEach((secao) => {
 form.addEventListener('input', (e) => marcarInvalido(e.target, false));
 
 form.addEventListener('change', (e) => {
+    aplicarExclusivo(e.target);
     atualizarCondicionais();
+    atualizarGrupos();
     marcarInvalido(e.target, false);
 
     // Se uma seção já concluída foi alterada e ficou incompleta, ela volta a ficar pendente
@@ -151,7 +182,13 @@ form.addEventListener('submit', (e) => {
         return;
     }
 
-    const dados = Object.fromEntries(new FormData(form));
+    // Grupos de checkbox sempre viram listas, mesmo com uma única opção marcada
+    const dados = {};
+    for (const [campo, valor] of new FormData(form)) {
+        const multiplo = form.querySelectorAll(`input[type="checkbox"][name="${campo}"]`).length > 1;
+        if (multiplo) (dados[campo] ??= []).push(valor);
+        else dados[campo] = valor;
+    }
     // Envio ainda não implementado: por enquanto apenas exibe os dados no console
     console.log(dados);
 });

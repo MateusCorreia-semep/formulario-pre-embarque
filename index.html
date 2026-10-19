@@ -217,6 +217,344 @@
                         </div>
                     </div>
                 </section>
+                <section class="secao" id="secao-sintomas" data-secao>
+                    <h2 class="secao__titulo">
+                        <button type="button" class="secao__cabecalho" aria-expanded="false"
+                            aria-controls="corpo-sintomas">
+                            <span class="secao__numero" aria-hidden="true">3</span>
+                            <span class="secao__textos">
+                                <span class="secao__nome">Sintomas Relevantes</span>
+                                <span class="secao__status"></span>
+                            </span>
+                            <svg class="secao__seta" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                    </h2>
+                    <div class="secao__corpo" id="corpo-sintomas">
+                        <div class="secao__conteudo">
+                            <div class="pergunta-grupo">
+                                <p class="titulo">Recentemente sentiu algum sintoma ou está fazendo tratamento para alguma doença abaixo?
+                                    <span class="obrigatorio">*</span></p>
+                                <p class="dica">Caso responda sim, sempre manter ciente o setor de saúde ocupacional da empresa.</p>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_tontura">
+                                    <span class="titulo" id="rotulo-sintoma_tontura">Tontura / labirintite</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_tontura" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_tontura" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_epilepsia">
+                                    <span class="titulo" id="rotulo-sintoma_epilepsia">Epilepsia / convulsão</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_epilepsia" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_epilepsia" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_gastrite">
+                                    <span class="titulo" id="rotulo-sintoma_gastrite">Gastrite / úlcera</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_gastrite" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_gastrite" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_hemorroidas">
+                                    <span class="titulo" id="rotulo-sintoma_hemorroidas">Hemorroidas</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_hemorroidas" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_hemorroidas" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_febre">
+                                    <span class="titulo" id="rotulo-sintoma_febre">Febre / Gripes ou Resfriados</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_febre" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_febre" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_bronquite">
+                                    <span class="titulo" id="rotulo-sintoma_bronquite">Bronquite / Asma</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_bronquite" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_bronquite" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_pedras_rins">
+                                    <span class="titulo" id="rotulo-sintoma_pedras_rins">Pedras nos Rins</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_pedras_rins" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_pedras_rins" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_pressao">
+                                    <span class="titulo" id="rotulo-sintoma_pressao">Pressão Alta / Dor no peito / aperto no peito</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_pressao" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_pressao" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_diabetes">
+                                    <span class="titulo" id="rotulo-sintoma_diabetes">Diabetes</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_diabetes" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_diabetes" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_hernias">
+                                    <span class="titulo" id="rotulo-sintoma_hernias">Hérnias</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_hernias" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_hernias" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_ansiedade">
+                                    <span class="titulo" id="rotulo-sintoma_ansiedade">Ansiedade / depressão</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_ansiedade" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_ansiedade" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_cancer">
+                                    <span class="titulo" id="rotulo-sintoma_cancer">Câncer</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_cancer" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_cancer" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_sinusite">
+                                    <span class="titulo" id="rotulo-sintoma_sinusite">Sinusite / Rinite</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sinusite" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sinusite" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_sono">
+                                    <span class="titulo" id="rotulo-sintoma_sono">Problemas com sono</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sono" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sono" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_dor_articular">
+                                    <span class="titulo" id="rotulo-sintoma_dor_articular">Dor na coluna / joelho / ombro</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_dor_articular" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_dor_articular" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_palpitacao">
+                                    <span class="titulo" id="rotulo-sintoma_palpitacao">Palpitação ou alteração importante dos batimentos cardíacos</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_palpitacao" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_palpitacao" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                                <div class="pergunta sintoma" role="radiogroup" aria-labelledby="rotulo-sintoma_sintoma_incapacitante">
+                                    <span class="titulo" id="rotulo-sintoma_sintoma_incapacitante">Algum sintoma que comprometa sua capacidade de trabalhar?</span>
+                                    <div class="segmento">
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sintoma_incapacitante" value="Sim" required><span>Sim</span></label>
+                                        <label class="segmento__opcao"><input type="radio" name="sintoma_sintoma_incapacitante" value="Não"><span>Não</span></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset class="pergunta" data-grupo-obrigatorio>
+                                <legend class="titulo">Atualmente sente dor em algum membro do corpo? <span class="obrigatorio">*</span></legend>
+                                <p class="dica">Para cada membro marcado, informe a intensidade da dor.</p>
+                                <div class="opcoes">
+                                <label class="opcao"><input type="checkbox" name="dor" value="Não sinto dor nenhuma" data-exclusivo> Não sinto dor nenhuma</label>
+                                <label class="opcao"><input type="checkbox" name="dor" value="Braços"> Braços</label>
+                                <div class="condicional" data-condicao="dor=Braços">
+                                    <div class="condicional__interno">
+                                        <div class="pergunta intensidade" role="radiogroup" aria-labelledby="rotulo-intensidade_bracos">
+                                            <span class="titulo" id="rotulo-intensidade_bracos">Intensidade da dor (Braços) <span class="obrigatorio">*</span></span>
+                                            <div class="escala">
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="0" required><span>0</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="1"><span>1</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="2"><span>2</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="3"><span>3</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="4"><span>4</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="5"><span>5</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="6"><span>6</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="7"><span>7</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="8"><span>8</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="9"><span>9</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_bracos" value="10"><span>10</span></label>
+                                            </div>
+                                            <div class="escala__legenda"><span>Sem dor</span><span>Dor máxima</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="opcao"><input type="checkbox" name="dor" value="Pernas"> Pernas</label>
+                                <div class="condicional" data-condicao="dor=Pernas">
+                                    <div class="condicional__interno">
+                                        <div class="pergunta intensidade" role="radiogroup" aria-labelledby="rotulo-intensidade_pernas">
+                                            <span class="titulo" id="rotulo-intensidade_pernas">Intensidade da dor (Pernas) <span class="obrigatorio">*</span></span>
+                                            <div class="escala">
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="0" required><span>0</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="1"><span>1</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="2"><span>2</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="3"><span>3</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="4"><span>4</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="5"><span>5</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="6"><span>6</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="7"><span>7</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="8"><span>8</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="9"><span>9</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pernas" value="10"><span>10</span></label>
+                                            </div>
+                                            <div class="escala__legenda"><span>Sem dor</span><span>Dor máxima</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="opcao"><input type="checkbox" name="dor" value="Coluna"> Coluna</label>
+                                <div class="condicional" data-condicao="dor=Coluna">
+                                    <div class="condicional__interno">
+                                        <div class="pergunta intensidade" role="radiogroup" aria-labelledby="rotulo-intensidade_coluna">
+                                            <span class="titulo" id="rotulo-intensidade_coluna">Intensidade da dor (Coluna) <span class="obrigatorio">*</span></span>
+                                            <div class="escala">
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="0" required><span>0</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="1"><span>1</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="2"><span>2</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="3"><span>3</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="4"><span>4</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="5"><span>5</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="6"><span>6</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="7"><span>7</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="8"><span>8</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="9"><span>9</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_coluna" value="10"><span>10</span></label>
+                                            </div>
+                                            <div class="escala__legenda"><span>Sem dor</span><span>Dor máxima</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="opcao"><input type="checkbox" name="dor" value="Pescoço"> Pescoço</label>
+                                <div class="condicional" data-condicao="dor=Pescoço">
+                                    <div class="condicional__interno">
+                                        <div class="pergunta intensidade" role="radiogroup" aria-labelledby="rotulo-intensidade_pescoco">
+                                            <span class="titulo" id="rotulo-intensidade_pescoco">Intensidade da dor (Pescoço) <span class="obrigatorio">*</span></span>
+                                            <div class="escala">
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="0" required><span>0</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="1"><span>1</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="2"><span>2</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="3"><span>3</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="4"><span>4</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="5"><span>5</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="6"><span>6</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="7"><span>7</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="8"><span>8</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="9"><span>9</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pescoco" value="10"><span>10</span></label>
+                                            </div>
+                                            <div class="escala__legenda"><span>Sem dor</span><span>Dor máxima</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="opcao"><input type="checkbox" name="dor" value="Mãos"> Mãos</label>
+                                <div class="condicional" data-condicao="dor=Mãos">
+                                    <div class="condicional__interno">
+                                        <div class="pergunta intensidade" role="radiogroup" aria-labelledby="rotulo-intensidade_maos">
+                                            <span class="titulo" id="rotulo-intensidade_maos">Intensidade da dor (Mãos) <span class="obrigatorio">*</span></span>
+                                            <div class="escala">
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="0" required><span>0</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="1"><span>1</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="2"><span>2</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="3"><span>3</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="4"><span>4</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="5"><span>5</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="6"><span>6</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="7"><span>7</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="8"><span>8</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="9"><span>9</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_maos" value="10"><span>10</span></label>
+                                            </div>
+                                            <div class="escala__legenda"><span>Sem dor</span><span>Dor máxima</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="opcao"><input type="checkbox" name="dor" value="Pés"> Pés</label>
+                                <div class="condicional" data-condicao="dor=Pés">
+                                    <div class="condicional__interno">
+                                        <div class="pergunta intensidade" role="radiogroup" aria-labelledby="rotulo-intensidade_pes">
+                                            <span class="titulo" id="rotulo-intensidade_pes">Intensidade da dor (Pés) <span class="obrigatorio">*</span></span>
+                                            <div class="escala">
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="0" required><span>0</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="1"><span>1</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="2"><span>2</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="3"><span>3</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="4"><span>4</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="5"><span>5</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="6"><span>6</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="7"><span>7</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="8"><span>8</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="9"><span>9</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_pes" value="10"><span>10</span></label>
+                                            </div>
+                                            <div class="escala__legenda"><span>Sem dor</span><span>Dor máxima</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="opcao"><input type="checkbox" name="dor" value="Outra"> Outra</label>
+                                <div class="condicional" data-condicao="dor=Outra">
+                                    <div class="condicional__interno">
+                                        <div class="pergunta">
+                                            <label for="dor_outra_local">Qual membro? <span class="obrigatorio">*</span></label>
+                                            <input type="text" id="dor_outra_local" name="dor_outra_local" placeholder="Insira sua resposta" required>
+                                        </div>
+                                        <div class="pergunta intensidade" role="radiogroup" aria-labelledby="rotulo-intensidade_outra">
+                                            <span class="titulo" id="rotulo-intensidade_outra">Intensidade da dor (Outra) <span class="obrigatorio">*</span></span>
+                                            <div class="escala">
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="0" required><span>0</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="1"><span>1</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="2"><span>2</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="3"><span>3</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="4"><span>4</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="5"><span>5</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="6"><span>6</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="7"><span>7</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="8"><span>8</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="9"><span>9</span></label>
+                                                <label class="escala__opcao"><input type="radio" name="intensidade_outra" value="10"><span>10</span></label>
+                                            </div>
+                                            <div class="escala__legenda"><span>Sem dor</span><span>Dor máxima</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="pergunta" data-grupo-obrigatorio>
+                                <legend class="titulo">Faz alguma atividade física abaixo? <span class="obrigatorio">*</span></legend>
+                                <div class="opcoes">
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="Academia na plataforma"> Academia na plataforma</label>
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="Academia na folga"> Academia na folga</label>
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="CrossFit"> CrossFit</label>
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="Caminhada"> Caminhada</label>
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="Corrida"> Corrida</label>
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="Ciclismo"> Ciclismo</label>
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="Natação"> Natação</label>
+                                    <label class="opcao"><input type="checkbox" name="atividade_fisica" value="Não pratico atividade física" data-exclusivo> Não pratico atividade física</label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Caso alguma resposta positiva (SIM) acima, que interfira no seu embarque, fazer contato de
+                                    imediato com o telefone <a href="tel:+5522998007682">(22) 99800-7682</a>. <span class="obrigatorio">*</span></legend>
+                                <label class="opcao"><input type="checkbox" name="ciente_contato" value="Ciente" required> Ciente</label>
+                            </fieldset>
+
+                            <fieldset class="pergunta">
+                                <legend class="titulo">Suas informações serão mantidas sob sigilo e utilizadas exclusivamente para fins de avaliação e
+                                    acompanhamento da sua saúde. <span class="obrigatorio">*</span></legend>
+                                <label class="opcao"><input type="checkbox" name="declaracao" value="Reconheço e afirmo as informações registradas."
+                                        required> Reconheço e afirmo as informações registradas.</label>
+                            </fieldset>
+
+                            <button type="button" class="btn-avancar">Avançar</button>
+                        </div>
+                    </div>
+                </section>
             </form>
         </main>
 
