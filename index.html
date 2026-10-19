@@ -4,11 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Pré-embarque</title>
+    <title>Autoavaliação de Saúde - Pré-Embarque</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <p>Formulário de Pré-embarque - Macaé</p>
+    <!-- Tela inicial -->
+    <section id="tela-inicial" class="intro">
+        <img class="intro__grafismo" src="assets/img/grafismo.svg" alt="" aria-hidden="true">
+
+        <div class="intro__conteudo">
+            <ul class="valores" aria-label="Nossos valores">
+                <li>Fazemos o certo</li>
+                <li>Somos próximos</li>
+                <li>Entregamos com excelência</li>
+            </ul>
+
+            <h1>Autoavaliação de Saúde - <span class="grifo">Pré-Embarque</span></h1>
+
+            <h2>Como está sua Saúde?</h2>
+            <p>Este questionário tem como objetivo identificar condições de saúde que possam comprometer a saúde e a
+                segurança sua ou da equipe durante o período de embarque.</p>
+
+            <button type="button" id="btn-iniciar" class="btn-iniciar">Iniciar agora</button>
+        </div>
+
+        <footer class="intro__rodape">
+            <img class="intro__logo" src="assets/img/logo-priner.png" alt="Priner">
+        </footer>
+    </section>
+
+    <!-- Formulário -->
+    <div id="tela-formulario" hidden>
+        <header class="topo">
+            <div class="topo__interno">
+                <p class="topo__titulo">Autoavaliação de Saúde - Pré-Embarque</p>
+                <img class="topo__logo" src="assets/img/logo-priner.png" alt="Priner">
+            </div>
+        </header>
+
+        <main class="container">
+            <form id="form-pre-embarque">
+                <fieldset id="dados-pessoais" class="secao">
+                    <legend>Dados Pessoais</legend>
+
+                    <fieldset class="pergunta">
+                        <legend class="titulo">Qual empresa você pertence? <span class="obrigatorio">*</span>
+                        </legend>
+                        <label class="opcao">
+                            <input type="radio" name="empresa" value="Priner SI" required>
+                            Priner SI
+                        </label>
+                        <label class="opcao">
+                            <input type="radio" name="empresa" value="Smartcoat">
+                            Smartcoat
+                        </label>
+                    </fieldset>
+
+                    <div class="pergunta">
+                        <label for="nome">Qual seu Nome? <span class="obrigatorio">*</span></label>
+                        <input type="text" id="nome" name="nome" placeholder="Insira sua resposta" autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="pergunta">
+                        <label for="telefone">Contato telefônico (DDD+telefone móvel)? <span
+                                class="obrigatorio">*</span></label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="Apenas números"
+                            inputmode="numeric" autocomplete="tel-national" maxlength="15"
+                            pattern="\(\d{2}\) 9\d{4}-\d{4}" title="Informe DDD + celular, ex.: (22) 99999-9999"
+                            required>
+                    </div>
+
+                    <div class="pergunta">
+                        <label for="unidade">Em qual unidade (Plataforma) está programado para embarque? <span
+                                class="obrigatorio">*</span></label>
+                        <input type="text" id="unidade" name="unidade" placeholder="Insira sua resposta" required>
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="btn-enviar">Enviar</button>
+            </form>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,372 @@
+/* Estilos mobile-first: a base é o celular; telas maiores ajustam via min-width */
+
+:root {
+    --verde-tradicao: #0B514F;
+    --verde-tradicao-escuro: #083d3b;
+    --verde-inovacao: #99FF33;
+    --branco: #FFFFFF;
+    --cinza: #808080;
+    --fundo-claro: #f2f5f5;
+    --texto: #1f2a2a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--fundo-claro);
+    color: var(--texto);
+    -webkit-text-size-adjust: 100%;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* ---------- Tela inicial ---------- */
+
+.intro {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px calc(24px + env(safe-area-inset-bottom));
+    overflow: hidden;
+    background: var(--verde-tradicao);
+    color: var(--branco);
+}
+
+.intro__grafismo {
+    position: absolute;
+    top: -6vw;
+    right: -18vw;
+    width: 72vw;
+    max-width: 420px;
+    height: auto;
+    pointer-events: none;
+}
+
+.intro__conteudo {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+    /* Espaço reservado para o grafismo no topo */
+    padding-top: 46vw;
+}
+
+.valores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.valores li {
+    padding: 6px 12px;
+    font-size: 0.8125rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+}
+
+.intro h1 {
+    margin: 0;
+    font-size: clamp(2rem, 9.5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.12;
+}
+
+.grifo {
+    color: var(--verde-tradicao);
+    background: var(--verde-inovacao);
+    padding: 0 0.15em;
+    white-space: nowrap;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.intro h2 {
+    margin: 0;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--verde-inovacao);
+}
+
+.intro p {
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.btn-iniciar {
+    width: 100%;
+    min-height: 60px;
+    margin-top: 12px;
+    padding: 18px 40px;
+    font: inherit;
+    font-size: 1.1875rem;
+    font-weight: 700;
+    color: var(--verde-tradicao);
+    background: var(--verde-inovacao);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-iniciar:active {
+    transform: scale(0.98);
+}
+
+.btn-iniciar:focus-visible {
+    outline: 3px solid var(--branco);
+    outline-offset: 3px;
+}
+
+.intro__rodape {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 32px;
+}
+
+.intro__logo {
+    width: 140px;
+    height: auto;
+}
+
+/* ---------- Formulário ---------- */
+
+.topo {
+    padding: 14px 16px;
+    background: var(--verde-tradicao);
+    color: var(--branco);
+    border-bottom: 4px solid var(--verde-inovacao);
+}
+
+.topo__interno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.topo__titulo {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.topo__logo {
+    flex-shrink: 0;
+    width: 84px;
+    height: auto;
+}
+
+.container {
+    margin: 12px;
+    padding: 24px 16px;
+    background: var(--branco);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.secao>legend {
+    margin-bottom: 24px;
+    padding-left: 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--verde-tradicao);
+    border-left: 4px solid var(--verde-inovacao);
+}
+
+.pergunta {
+    margin-bottom: 28px;
+}
+
+.pergunta>label,
+.pergunta>.titulo {
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.obrigatorio {
+    color: #a4262c;
+}
+
+/* Opções como "cartões" para facilitar o toque */
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 52px;
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    border: 1px solid #c8c6c4;
+    border-radius: 6px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.opcao:has(input:checked) {
+    border-color: var(--verde-tradicao);
+    background: rgba(11, 81, 79, 0.06);
+    box-shadow: inset 0 0 0 1px var(--verde-tradicao);
+}
+
+.opcao input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--verde-tradicao);
+}
+
+input[type="text"],
+input[type="tel"] {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 14px;
+    font: inherit;
+    /* 16px evita o zoom automático do iOS ao focar */
+    font-size: 16px;
+    border: 1px solid #c8c6c4;
+    border-radius: 6px;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus {
+    outline: 2px solid var(--verde-tradicao);
+    outline-offset: -1px;
+    border-color: transparent;
+}
+
+.btn-enviar {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 28px;
+    font: inherit;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--branco);
+    background: var(--verde-tradicao);
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-enviar:hover {
+    background: var(--verde-tradicao-escuro);
+}
+
+/* ---------- Telas maiores ---------- */
+
+@media (min-width: 600px) {
+    .intro {
+        padding: 40px 48px;
+    }
+
+    .intro__grafismo {
+        top: -40px;
+        right: -60px;
+        width: 380px;
+    }
+
+    .intro__conteudo {
+        padding-top: 260px;
+    }
+
+    .btn-iniciar {
+        width: auto;
+        align-self: flex-start;
+    }
+
+    .container {
+        max-width: 760px;
+        margin: 24px auto;
+        padding: 32px;
+    }
+
+    .topo__titulo {
+        font-size: 1.25rem;
+    }
+
+    .topo__logo {
+        width: 110px;
+    }
+
+    .btn-enviar {
+        width: auto;
+    }
+}
+
+@media (min-width: 960px) {
+    .intro {
+        padding: 56px 72px;
+    }
+
+    .intro__grafismo {
+        top: 50%;
+        right: -40px;
+        width: 44vw;
+        max-width: 640px;
+        transform: translateY(-55%);
+    }
+
+    .intro__conteudo {
+        justify-content: center;
+        max-width: 52vw;
+        padding-top: 0;
+    }
+
+    .intro h1 {
+        font-size: clamp(2.5rem, 4.2vw, 3.75rem);
+    }
+
+    .intro p {
+        font-size: 1.1875rem;
+    }
+
+    .btn-iniciar:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(153, 255, 51, 0.35);
+    }
+
+    .intro__rodape {
+        justify-content: flex-end;
+    }
+
+    .intro__logo {
+        width: 190px;
+    }
+}
