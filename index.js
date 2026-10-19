@@ -279,6 +279,20 @@ function mostrarSucesso() {
     window.scrollTo(0, 0);
 }
 
+const MENSAGENS_ERRO = {
+    conexao: 'Não foi possível conectar para enviar suas respostas. Verifique sua conexão com a internet e tente novamente.',
+    nao_autorizado: 'O envio das respostas não foi autorizado. Entre em contato com a Saúde Ocupacional pelo telefone (22) 99800-7682.',
+    padrao: 'Ocorreu um erro ao registrar suas respostas. Tente novamente em alguns instantes.',
+};
+
+function mostrarErroEnvio(codigo) {
+    avisoEnvio.querySelector('.aviso-envio__texto').textContent = MENSAGENS_ERRO[codigo] ?? MENSAGENS_ERRO.padrao;
+    // Tentar de novo não resolve uma recusa de autorização
+    avisoEnvio.querySelector('.aviso-envio__tentar').hidden = codigo === 'nao_autorizado';
+    avisoEnvio.hidden = false;
+    avisoEnvio.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
 let enviando = false;
 
 form.addEventListener('submit', async (e) => {
@@ -301,19 +315,25 @@ form.addEventListener('submit', async (e) => {
     btnEnviar.textContent = 'Enviando...';
 
     try {
-        const resposta = await fetch('/api/enviar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(coletarDados()),
-        });
-        if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+        let resposta;
+        try {
+            resposta = await fetch('/api/enviar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(coletarDados()),
+            });
+        } catch {
+            // fetch só falha assim quando não há conexão com o servidor
+            throw Object.assign(new Error('Sem conexão'), { codigo: 'conexao' });
+        }
+        if (!resposta.ok) {
+            const corpo = await resposta.json().catch(() => ({}));
+            throw Object.assign(new Error(`HTTP ${resposta.status}`), { codigo: corpo.codigo });
+        }
         mostrarSucesso();
     } catch (erro) {
         console.error('Falha no envio', erro);
-        avisoEnvio.querySelector('.aviso-envio__texto').textContent =
-            'Não foi possível enviar suas respostas. Verifique sua conexão e tente novamente.';
-        avisoEnvio.hidden = false;
-        avisoEnvio.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        mostrarErroEnvio(erro.codigo);
     } finally {
         enviando = false;
         btnEnviar.disabled = false;
